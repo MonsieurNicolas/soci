@@ -252,7 +252,7 @@ firebird_session_backend::firebird_session_backend(
 }
 
 
-void firebird_session_backend::begin()
+void firebird_session_backend::begin(const char *beginTx)
 {
     // Transaction is always started in ctor, because Firebird can't work
     // without active transaction.
@@ -286,7 +286,7 @@ void firebird_session_backend::setDPBOption(int const option, std::string const 
     dpb_.append(value);
 }
 
-void firebird_session_backend::commit()
+void firebird_session_backend::commit(const char *commitTx)
 {
     ISC_STATUS stat[stat_size];
 
@@ -306,7 +306,7 @@ void firebird_session_backend::commit()
 
 }
 
-void firebird_session_backend::rollback()
+void firebird_session_backend::rollback(const char *rollbackTx)
 {
     ISC_STATUS stat[stat_size];
 
